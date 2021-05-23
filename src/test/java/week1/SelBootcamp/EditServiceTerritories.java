@@ -1,6 +1,7 @@
 package week1.SelBootcamp;
 
 import java.util.concurrent.TimeUnit;
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import org.openqa.selenium.By;
@@ -38,8 +39,13 @@ public class EditServiceTerritories {
 		WebElement edit=d.findElement(By.xpath("//a[@title='Edit']"));
 		edit.click();
 		String createdBy=d.findElement(By.xpath("(//span[@class='test-id__field-value slds-form-element__static slds-grow  is-read-only'])[2]")).getText();
-		String replaceAll=createdBy.replaceAll("\\W\\D", " ");
-		System.out.println(replaceAll);
+		String replaceAll=createdBy.replaceAll("\\W+\\D", " ");
+		
+		
+		String pat="[a-z]+[A-Z]+";
+		Pattern compile = Pattern.compile(pat);
+		Matcher mat=compile.matcher(pat);
+		System.out.println(mat.matches());
 	
 		
 		
