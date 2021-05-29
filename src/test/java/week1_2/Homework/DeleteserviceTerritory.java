@@ -1,4 +1,4 @@
-package week1.SelBootcamp;
+package week1_2.Homework;
 
 import java.util.Arrays;
 import java.util.concurrent.TimeUnit;
