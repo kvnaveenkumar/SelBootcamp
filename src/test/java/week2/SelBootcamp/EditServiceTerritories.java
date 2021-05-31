@@ -9,14 +9,19 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 
 public class EditServiceTerritories {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws InterruptedException {
 		// TODO Auto-generated method stub
+		ChromeOptions options = new ChromeOptions();
+        options.addArguments("--disable-notifications");
 		System.setProperty("webdriver.chrome.driver", "./Driver/chromedriver.exe");
-		WebDriver d=new ChromeDriver();
+		ChromeDriver d=new ChromeDriver(options);
 		d.manage().window().maximize();
 		d.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
 		d.get("https://login.salesforce.com/");
@@ -27,6 +32,8 @@ public class EditServiceTerritories {
 		WebElement login=d.findElement(By.id("Login"));
 		login.click();
 		WebElement appLauncher=d.findElement(By.xpath("//button[@class='bare slds-icon-waffle_container slds-context-bar__button slds-button uiButton forceHeaderButton salesforceIdentityAppLauncherHeader']"));
+		WebDriverWait wait=new WebDriverWait(d, 60);
+		wait.until(ExpectedConditions.elementToBeClickable(appLauncher));
 		appLauncher.click();
 		WebElement viewAll=d.findElement(By.xpath("//button[@class='slds-button']"));
 		viewAll.click();
@@ -39,50 +46,44 @@ public class EditServiceTerritories {
 		WebElement edit=d.findElement(By.xpath("//a[@title='Edit']"));
 		edit.click();
 		String createdBy=d.findElement(By.xpath("(//span[@class='test-id__field-value slds-form-element__static slds-grow  is-read-only'])[2]")).getText();
-		String replaceAll=createdBy.replaceAll("\\W+\\D", " ");
-		
-		
-		String pat="[a-z]+[A-Z]+";
-		Pattern compile = Pattern.compile(pat);
-		Matcher mat=compile.matcher(pat);
-		System.out.println(mat.matches());
-	
-		
-		
-		/*WebElement createdBy=d.findElement(By.xpath("(//span[@class='uiOutputText forceOutputLookup'])[2]"));
-		WebElement lastModifiedBy=d.findElement(By.xpath("(//span[@class='uiOutputText forceOutputLookup'])[2]"));*/
-		
-		
-		
-		/*WebElement New=d.findElement(By.xpath("//a[@class='forceActionLink']"));
-		New.click();
-		
-		WebElement name=d.findElement(By.xpath("//input[@class=' input']"));
-		name.sendKeys("K V Naveen Kumar");
-		WebElement operatingHours=d.findElement(By.xpath("//input[@title='Search Operating Hours']"));
-		operatingHours.click();
-		WebElement UKShift=d.findElement(By.xpath("//div[@title='UK Shift']"));
-		UKShift.click();
-		WebElement active=d.findElement(By.xpath("//div[@class='uiInput uiInputCheckbox uiInput--default uiInput--checkbox']//input[@type='checkbox']"));
-		active.click();
-		WebElement city=d.findElement(By.xpath("//input[@class='city compoundBorderBottom compoundBorderRight input']"));
-		city.sendKeys("Chennai");
-		WebElement state=d.findElement(By.xpath("//input[@class='state compoundBorderBottom input']"));
-		state.sendKeys("TamilNadu");
-		WebElement country=d.findElement(By.xpath("//input[@class='country compoundBRRadius input']"));
-		country.sendKeys("India");
-		WebElement zipcode=d.findElement(By.xpath("//input[@class='postalCode compoundBLRadius compoundBorderRight input']"));
-		zipcode.sendKeys("600100");
-		WebElement save=d.findElement(By.xpath("//button[@class='slds-button slds-button--neutral uiButton--brand uiButton forceActionButton']"));
-		save.click();
-		WebElement verifyName=d.findElement(By.xpath("(//span[@class='uiOutputText'])[1]"));
-		String Output=verifyName.getText();
-		if(Output.equals("K V Naveen Kumar")){
-			System.out.println("Test case PASS");
+		createdBy=createdBy.split("\\,")[0];
+		String modifiedBy=d.findElement(By.xpath("(//span[@class='test-id__field-value slds-form-element__static slds-grow  is-read-only'])[3]")).getText();
+		modifiedBy=modifiedBy.split("\\,")[0];
+		WebElement owner=d.findElement(By.xpath("//div[@class='slds-form-element slds-form-element_readonly slds-grow slds-hint-parent override--slds-form-element']//span[@class='test-id__field-value slds-form-element__static slds-grow  is-read-only']/span[@class='uiOutputText forceOutputLookup']"));	
+		String ownertxt=owner.getText();
+		if(createdBy.contains(modifiedBy)){
+			System.out.println("TC PASS");
+		}
+		if(modifiedBy.contains(createdBy)){
+			System.out.println("TC PASS");
+		}
+		if(modifiedBy.contains(ownertxt)){
+			System.out.println("TC PASS");
+		}
+		if(createdBy.contains(ownertxt)){
+			System.out.println("TC PASS");
 		}
 		else{
-			System.out.println("Test case FAIL");
-		}*/
-	}
-
-}
+			System.out.println("TC FAIL");
+		}
+		WebElement country=d.findElementByXPath("//input[@class='country compoundBRRadius input']");
+		j.executeScript("arguments[0].scrollIntoView();",country);
+		country.clear();
+		country.sendKeys("North America");
+		WebElement save=d.findElementByXPath("//button[@title='Save']//span[text()='Save']");
+		save.click();
+		Thread.sleep(5000);
+		WebElement dropdown1=d.findElement(By.xpath("(//div[@class='forceVirtualActionMarker forceVirtualAction']//a[@role='button'])[1]"));
+		wait.until(ExpectedConditions.elementToBeClickable(dropdown1));
+		dropdown1.click();
+		WebElement edit1=d.findElement(By.xpath("//a[@title='Edit']"));
+		edit1.click();
+		String modifiedByAfter=d.findElement(By.xpath("(//span[@class='test-id__field-value slds-form-element__static slds-grow  is-read-only'])[3]")).getText();
+		modifiedByAfter=modifiedByAfter.split("\\,")[1];
+		if(modifiedBy!=modifiedByAfter){
+			System.out.println("TC PASS");
+		}
+		
+		
+		
+	}}
