@@ -1,4 +1,4 @@
-package week2.SelBootcamp;
+package testNGConversion;
 
 import java.util.concurrent.TimeUnit;
 import java.util.regex.Matcher;
@@ -12,25 +12,13 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.annotations.Test;
 
 
-public class EditServiceTerritories {
-
-	public static void main(String[] args) throws InterruptedException {
-		// TODO Auto-generated method stub
-		ChromeOptions options = new ChromeOptions();
-        options.addArguments("--disable-notifications");
-		System.setProperty("webdriver.chrome.driver", "./Driver/chromedriver.exe");
-		ChromeDriver d=new ChromeDriver(options);
-		d.manage().window().maximize();
-		d.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
-		d.get("https://login.salesforce.com/");
-		WebElement username=d.findElement(By.id("username"));
-		username.sendKeys("cypress@testleaf.com");
-		WebElement password=d.findElement(By.id("password"));
-		password.sendKeys("Selbootcamp@123");
-		WebElement login=d.findElement(By.id("Login"));
-		login.click();
+public class EditServiceTerritories extends BaseClass {
+@Test
+	public  void tc_EditServiceTerrtorories() throws InterruptedException {
+	    d.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
 		WebElement appLauncher=d.findElement(By.xpath("//button[@class='bare slds-icon-waffle_container slds-context-bar__button slds-button uiButton forceHeaderButton salesforceIdentityAppLauncherHeader']"));
 		WebDriverWait wait=new WebDriverWait(d, 60);
 		wait.until(ExpectedConditions.elementToBeClickable(appLauncher));

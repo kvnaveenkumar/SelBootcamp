@@ -1,4 +1,4 @@
-package week1_2.Homework;
+package vennilaScript;
 
 import java.util.concurrent.TimeUnit;
 
