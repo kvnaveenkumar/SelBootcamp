@@ -1,4 +1,4 @@
-package testNGConversion;
+package testNG;
 
 import java.util.concurrent.TimeUnit;
 import java.util.regex.Matcher;
@@ -22,14 +22,15 @@ public class CreateNewCase extends BaseClass{
 @Test	
 	public void tc_CreateNewCase() {
 	    d.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
+	    WebDriverWait w= new WebDriverWait(d, 60);
 		WebElement globalActionslink=d.findElement(By.xpath("//a[@class='globalCreateTrigger slds-button slds-button_icon slds-button_icon slds-button_icon-container slds-button_icon-small slds-global-actions__task slds-global-actions__item-action']"));
+		w.until(ExpectedConditions.elementToBeClickable(globalActionslink));
 		globalActionslink.click();
 		WebElement newCase=d.findElement(By.xpath("//a[@title='New Case']"));
 		newCase.click();
 		WebElement contactName=d.findElement(By.xpath("//input[@title='Search Contacts']"));
 		contactName.click();
 		WebElement contactText=d.findElement(By.xpath("(//a[@role='option'])[1]"));
-		WebDriverWait w=new WebDriverWait(d, 60);
 		w.until(ExpectedConditions.elementToBeClickable(contactText));
 		contactText.click();
 		WebElement statusclick=d.findElement(By.xpath("(//a[text()='New'])[1]"));

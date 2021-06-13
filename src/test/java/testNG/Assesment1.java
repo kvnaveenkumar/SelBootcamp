@@ -1,4 +1,4 @@
-package testNGConversion;
+package testNG;
 
 import java.awt.AWTException;
 import java.awt.Robot;

@@ -1,4 +1,4 @@
-package testNGConversion;
+package testNG;
 
 import java.util.concurrent.TimeUnit;
 import java.util.regex.Matcher;

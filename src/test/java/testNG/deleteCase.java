@@ -1,4 +1,4 @@
-package testNGConversion;
+package testNG;
 
 import java.util.List;
 import java.util.concurrent.TimeUnit;

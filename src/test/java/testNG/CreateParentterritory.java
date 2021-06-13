@@ -1,4 +1,4 @@
-package testNGConversion;
+package testNG;
 
 import java.util.concurrent.TimeUnit;
 import java.util.regex.Matcher;
@@ -25,7 +25,9 @@ public class CreateParentterritory extends BaseClass{
 	    d.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
 		WebElement appLauncher=d.findElement(By.xpath("//button[@class='bare slds-icon-waffle_container slds-context-bar__button slds-button uiButton forceHeaderButton salesforceIdentityAppLauncherHeader']"));
 		appLauncher.click();
+		WebDriverWait w=new WebDriverWait(d, 60);
 		WebElement viewAll=d.findElement(By.xpath("//button[@class='slds-button']"));
+		w.until(ExpectedConditions.elementToBeClickable(viewAll));
 		viewAll.click();
 		WebElement serviceTerritories=d.findElement(By.xpath("//p[text()='Service Territories']"));
 		JavascriptExecutor j=(JavascriptExecutor)d;
@@ -42,7 +44,6 @@ public class CreateParentterritory extends BaseClass{
 		WebElement parentTerritory=d.findElement(By.xpath("//input[@title='Search Service Territories']"));
 		parentTerritory.click();
 		WebElement newServiceTerritory=d.findElement(By.xpath("//span[@title='New Service Territory']"));
-		WebDriverWait w= new WebDriverWait(d, 60);
 		w.until(ExpectedConditions.elementToBeClickable(newServiceTerritory));
 		newServiceTerritory.click();
 		d.switchTo().activeElement();
