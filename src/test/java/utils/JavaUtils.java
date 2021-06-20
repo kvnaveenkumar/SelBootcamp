@@ -1,4 +1,4 @@
-package readExcelpgms;
+package utils;
 
 import java.io.IOException;
 
@@ -6,7 +6,8 @@ import org.apache.poi.ss.usermodel.DataFormatter;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
-public class ReadExcel {
+public class JavaUtils extends SeleniumUtils{
+
 	static DataFormatter formatter = new DataFormatter();
 	
 	
@@ -17,5 +18,4 @@ public class ReadExcel {
 		workbook.close();
 		return cellValue;
 	}
-
 }

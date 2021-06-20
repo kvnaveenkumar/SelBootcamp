@@ -1,12 +1,14 @@
 package javaExamples;
 
+import java.util.Set;
+
 public class ConstructorExample {
 	int hotelRoomNumber;
 	String hotelName;
 	String hotelLocation;
 	int hotelPhoneNumber;
 	
-
+	
 	 //This is the Constructor which will create in run time
 	 //This is a Default Constructor
 	 ConstructorExample() {
