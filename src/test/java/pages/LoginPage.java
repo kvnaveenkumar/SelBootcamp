@@ -11,7 +11,7 @@ public class LoginPage extends ProjectMethods{
 	public LoginPage enterUsername(){
 		try {
 			WebElement username=d.findElement(By.id("username"));
-			username.sendKeys(ReadExcel.excelValue("Login", 1, 0));
+			username.sendKeys(ReadExcel.excelValue("Login", 1, 1));
 			} 
 		catch (Exception e) {
 			e.printStackTrace();
@@ -21,7 +21,7 @@ public class LoginPage extends ProjectMethods{
 	public LoginPage enterPassword(){
 		try {
 			WebElement password=d.findElement(By.id("password"));
-			password.sendKeys(ReadExcel.excelValue("Login", 2, 0));
+			password.sendKeys(ReadExcel.excelValue("Login", 2, 1));
 			} 
 		catch (Exception e) {
 			e.printStackTrace();

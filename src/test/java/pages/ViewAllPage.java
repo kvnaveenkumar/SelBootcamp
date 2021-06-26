@@ -38,6 +38,20 @@ public class ViewAllPage extends ProjectMethods{
 		}
 		return new WorkTypesPage();
 	}
+	public ServiceConsole clickServiceConsole() throws InterruptedException{
+		try {
+			JavascriptExecutor executor = (JavascriptExecutor)d;
+			WebElement serviceConsole=d.findElement(By.xpath("//a[@class='slds-text-heading_small']//p[text()='Service Console']"));
+			w=new WebDriverWait(d, 60);
+			w.until(ExpectedConditions.elementToBeClickable(serviceConsole));
+			executor.executeScript("arguments[0].click();", serviceConsole);
+			Thread.sleep(5000);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return new ServiceConsole();
+	}
 	
 
 }
