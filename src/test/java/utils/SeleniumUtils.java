@@ -1,5 +1,10 @@
 package utils;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.Properties;
+
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -65,6 +70,15 @@ public class SeleniumUtils extends ProjectMethods{
 	public static void getTextAlerts(){
 		Alert a=d.switchTo().alert();
 		a.getText();
+	}
+	public static void getvaluefromConfigFile(String propertyValue) throws IOException{
+		FileInputStream fis=new FileInputStream("./src/main/java/config.properties");
+		
+		Properties prop=new Properties();
+		
+		prop.load(fis);
+		
+		String name=prop.getProperty(propertyValue);
 	}
 
 }

@@ -39,5 +39,17 @@ public class Salespage extends ProjectMethods {
 		return new CasesPage();
 		
 	}
+	public CasesPage selectCaseNumber(){
+		try {
+			JavascriptExecutor executor = (JavascriptExecutor)d;
+			WebElement caseNumber=d.findElement(By.xpath("(//a[@role='menuitemcheckbox'])[2]"));
+			executor.executeScript("arguments[0].click();", caseNumber);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return new CasesPage();
+		
+	}
 
 }

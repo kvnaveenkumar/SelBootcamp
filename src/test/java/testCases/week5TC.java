@@ -56,6 +56,21 @@ public class week5TC extends ProjectMethods{
 		.verifyToastMessage();
 		
 }
+@Test
+	public void EditWorkTypeNegative() throws InterruptedException{
+		new LoginPage()
+		.enterUsername()
+		.enterPassword()
+		.clickButton()
+		.clickAppLauncher()
+		.clickViewAll()
+		.clickWorkTypes()
+		.clickEdit(1)
+		.enterTimeFrameStart()
+		.enterTimeFrameEnd()
+		.clickSaveWorkType()
+		.verifyErrorMessage();
+}
 	@Test
 	public void CreateNewCase() throws InterruptedException{
 		new LoginPage()
@@ -87,6 +102,7 @@ public class week5TC extends ProjectMethods{
 		.clickDelete()
 		.verifyToastMessage();
 	}
+	
 
 	
 	

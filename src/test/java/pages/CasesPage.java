@@ -35,6 +35,7 @@ public class CasesPage extends ProjectMethods{
 		}
 		return this;
 	}
+	
 	public CasesPage verifyToastMessage(){
 		try {
 			WebElement toastMessage=d.findElement(By.xpath("//span[@class='toastMessage slds-text-heading--small forceActionsText']"));

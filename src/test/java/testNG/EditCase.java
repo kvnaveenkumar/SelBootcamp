@@ -28,6 +28,7 @@ public class EditCase extends BaseClass{
 		WebElement caseLink=d.findElement(By.xpath("(//a[@class='slds-button slds-button_reset'])[3]"));
 		w.until(ExpectedConditions.elementToBeClickable(caseLink));
 		caseLink.click();
+		
 		JavascriptExecutor executor = (JavascriptExecutor)d;
 		WebElement caseNumber=d.findElement(By.xpath("(//a[@role='menuitemcheckbox'])[2]"));
 		executor.executeScript("arguments[0].click();", caseNumber);

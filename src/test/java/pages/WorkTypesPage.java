@@ -71,6 +71,56 @@ public class WorkTypesPage extends ProjectMethods{
 		}
 		return this;
 	}
+	public WorkTypesPage enterTimeFrameStart(){
+		try {
+			WebElement timeFrameStart=d.findElement(By.xpath("(//input[@class='input uiInputSmartNumber'])[4]"));
+			JavascriptExecutor js=(JavascriptExecutor)d;
+			js.executeScript("arguments[0].scrollIntoView();", timeFrameStart);
+			timeFrameStart.sendKeys(ReadExcel.excelValue("EditWorkTypeNegative", 1, 0));
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return this;
+	}
+	public WorkTypesPage enterTimeFrameEnd(){
+		try {
+			WebElement timeFrameEnd=d.findElement(By.xpath("(//input[@class='input uiInputSmartNumber'])[5]"));
+			JavascriptExecutor js=(JavascriptExecutor)d;
+			js.executeScript("arguments[0].scrollIntoView();", timeFrameEnd);
+			timeFrameEnd.sendKeys(ReadExcel.excelValue("EditWorkTypeNegative", 2, 0));
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return this;
+	}
+	public WorkTypesPage clickSaveWorkType(){
+		try {
+			d.findElement(By.xpath("(//span[text()='Save'])[3]")).click();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return this;
+	}
+	public WorkTypesPage verifyErrorMessage(){
+		try {
+			WebElement errorMessage=d.findElement(By.xpath("//span[@class='genericError uiOutputText']"));
+			JavascriptExecutor js=(JavascriptExecutor)d;
+			js.executeScript("arguments[0].scrollIntoView();", errorMessage);
+			if(errorMessage.getText().contains("error")){
+				Assert.assertTrue(true);
+			}
+			else{
+				Assert.assertTrue(false);
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return this;
+	}
 	public WorkTypesPage clickDelete(){
 		try {
 			w=new WebDriverWait(d, 60);

@@ -1,5 +1,9 @@
 package base;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
@@ -20,9 +24,14 @@ import org.testng.annotations.BeforeSuite;
 
 public class ProjectMethods {
 	public static ChromeDriver d;
+	public static Properties prop;
 	
 	@BeforeMethod
-	public void launchBrowser(){
+	public void launchBrowser() throws IOException{
+		FileInputStream fis=new FileInputStream("./src/main/java/config.properties");
+		prop=new Properties();
+		prop.load(fis);
+		
 		ChromeOptions options = new ChromeOptions();
         options.addArguments("--disable-notifications");
         options.addArguments("window-size=1366,768");
@@ -30,7 +39,7 @@ public class ProjectMethods {
 		d=new ChromeDriver(options);
 		d.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
 		d.manage().window().maximize();
-		d.get("https://login.salesforce.com/");
+		d.get(prop.getProperty("url"));
 	}
 	@AfterMethod
 	public void closeBrowser(){
