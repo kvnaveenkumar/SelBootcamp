@@ -41,6 +41,7 @@ public class DeleteserviceTerritory extends BaseClass{
 		WebElement dropdown=d.findElement(By.xpath("(//a[@class='rowActionsPlaceHolder slds-button slds-button--icon-x-small slds-button--icon-border-filled keyboardMode--trigger'])[1]"));
 		j.executeScript("arguments[0].scrollIntoView();",dropdown);
 		dropdown.click();
+		
 		WebElement edit=d.findElement(By.xpath("//a[@title='Delete']"));
 		edit.click();
 		WebElement delete=d.findElement(By.xpath("//button[@class='slds-button slds-button--neutral uiButton--default uiButton--brand uiButton forceActionButton']"));

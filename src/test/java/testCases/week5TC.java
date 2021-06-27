@@ -102,8 +102,39 @@ public class week5TC extends ProjectMethods{
 		.clickDelete()
 		.verifyToastMessage();
 	}
-	
-
+	@Test
+	public void CreateServiceTerritories() throws InterruptedException{
+		new LoginPage()
+		.enterUsername()
+		.enterPassword()
+		.clickButton()
+		.clickAppLauncher()
+		.clickViewAll()
+		.clickServiceTerritories()
+		.clickNew()
+		.enterName()
+		.clickOperatingHoursandChooseFirst()
+		.clickActive()
+		.enterCity()
+		.enterState()
+		.enterCountry()
+		.enterPincode()
+		.clickSave()
+		.verifyToastMessage();
+	}
+	@Test
+	public void DeleteServiceTerritories() throws InterruptedException{
+		new LoginPage()
+		.enterUsername()
+		.enterPassword()
+		.clickButton()
+		.clickAppLauncher()
+		.clickViewAll()
+		.clickServiceTerritories()
+		.clickDropdown()
+		.clickDelete()
+		.verifyDeleteToastMessage();
+	}
 	
 	
 	

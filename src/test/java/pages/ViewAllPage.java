@@ -52,6 +52,18 @@ public class ViewAllPage extends ProjectMethods{
 		}
 		return new ServiceConsole();
 	}
+	public ServiceTerritories clickServiceTerritories() throws InterruptedException{
+		try {
+			WebElement serviceTerritories=d.findElement(By.xpath("//p[text()='Service Territories']"));
+			JavascriptExecutor j=(JavascriptExecutor)d;
+			j.executeScript("arguments[0].scrollIntoView();",serviceTerritories);
+			serviceTerritories.click();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return new ServiceTerritories();
+	}
 	
 
 }
